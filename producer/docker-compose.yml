@@ -26,14 +26,14 @@ services:
 
   producer:
     build: 
-      context: ./producer  
+      context: .  
     container_name: producer
     environment:
       - PYTHONUNBUFFERED=1
     depends_on:
       - kafka
     volumes:
-      - ./data:/app/data
+      - ../data:/app/data
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
