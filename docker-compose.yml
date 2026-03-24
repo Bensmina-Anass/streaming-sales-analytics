@@ -1,0 +1,287 @@
+services:
+
+  # ── PostgreSQL ────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:15
+    container_name: oltp_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: e-commerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/initiate_tables.sql:/docker-entrypoint-initdb.d/init_schema.sql
+    command: postgres -c log_min_messages=FATAL   
+    healthcheck:
+      test: ["CMD-SHELL", "psql -U admin -d e-commerce -c 'SELECT 1' -q --no-psqlrc 2>/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_ui
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy 
+
+  # ── ClickHouse ────────────────────────────────────────────────────────────
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: olap_clickhouse
+    environment:
+      CLICKHOUSE_USER: admin
+      CLICKHOUSE_PASSWORD: admin
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./clickhouse/init_db.sql:/docker-entrypoint-initdb.d/init_clickhouse.sql
+
+  # ── Airflow ───────────────────────────────────────────────────────────────
+  airflow-postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    volumes:
+      - airflow_db_data:/var/lib/postgresql/data
+
+  airflow-init:
+    image: apache/airflow:2.7.1
+    entrypoint: /bin/bash
+    command: -c 'airflow db init && airflow users create --username admin --password admin --firstname Aki --lastname Ensias --role Admin --email admin@example.com'
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres/airflow
+    depends_on:
+      airflow-postgres:
+        condition: service_started
+
+  airflow-webserver:
+    image: apache/airflow:2.7.1
+    container_name: airflow_webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres/airflow
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - AIRFLOW_ADMIN_USER=admin
+      - AIRFLOW_ADMIN_PASSWORD=admin
+    volumes:
+      - ./dags:/opt/airflow/dags
+    depends_on:
+      airflow-postgres:
+        condition: service_started
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.1
+    container_name: airflow_scheduler
+    command: scheduler
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres/airflow
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+    volumes:
+      - ./dags:/opt/airflow/dags
+    depends_on:
+      airflow-postgres:
+        condition: service_started
+      airflow-init:
+        condition: service_completed_successfully
+
+  # ── Redpanda ──────────────────────────────────────────────────────────────
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.26
+    container_name: redpanda
+    command:
+      - redpanda start
+      - --smp 1
+      - --overprovisioned
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda:9092,external://localhost:19092
+      - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082
+      - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
+    ports:
+      - 18081:18081
+      - 18082:18082
+      - 19092:19092
+
+  redpanda-init:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.26
+    container_name: redpanda_init
+    entrypoint: /bin/bash
+    command: -c "
+      sleep 5 &&
+      rpk topic create topic_orders         --brokers redpanda:9092 &&
+      rpk topic create topic_order_items    --brokers redpanda:9092 &&
+      rpk topic create topic_order_payments --brokers redpanda:9092 &&
+      rpk topic create topic_order_reviews  --brokers redpanda:9092 &&
+      echo 'All topics created.'"
+    depends_on:
+      redpanda:
+        condition: service_started
+    restart: "no"
+
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console:v2.4.3
+    container_name: redpanda-console
+    entrypoint: /bin/sh
+    command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["redpanda:9092"]
+          schemaRegistry:
+            enabled: true
+            urls: ["http://redpanda:8081"]
+        redpanda:
+          adminApi:
+            enabled: true
+            urls: ["http://redpanda:9644"]
+    ports:
+      - 18080:8080
+    depends_on:
+      redpanda:
+        condition: service_started
+
+  kcat:
+    image: edenhill/kcat:1.7.1
+    command: ["-L", "-b", "redpanda:9092"]
+    depends_on:
+      redpanda:
+        condition: service_started
+
+  ksqldb-server:
+    image: confluentinc/ksqldb-server
+    container_name: ksqldb-server
+    ports:
+      - 8088:8088
+    environment:
+      KSQL_BOOTSTRAP_SERVERS: "redpanda:9092"
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://redpanda:8081"
+      KSQL_LISTENERS: "http://0.0.0.0:8088"
+      KSQL_CACHE_MAX_BYTES_BUFFERING: 0
+    depends_on:
+      redpanda:
+        condition: service_started
+
+  ksqldb-cli:
+    image: confluentinc/ksqldb-cli
+    container_name: ksqldb-cli
+    entrypoint: /bin/sh
+    tty: true
+    depends_on:
+      ksqldb-server:
+        condition: service_started
+
+  # ── Seeder & Producer ─────────────────────────────────────────────────────
+  postgres-seeder:
+    build:
+      context: ./seeder
+    container_name: postgres_seeder
+    environment:
+      - PG_HOST=postgres
+      - PG_DB=e-commerce
+      - PG_USER=admin
+      - PG_PASSWORD=admin
+    depends_on:
+      postgres:
+        condition: service_healthy  
+    volumes:
+      - ./data/oltp:/app/data
+    restart: "no"
+
+  producer:
+    build:
+      context: ./producer
+    container_name: producer
+    command: python producer.py
+    environment:
+      - PYTHONUNBUFFERED=1
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+      - KAFKA_TOPIC=my-topic
+      - SCHEMA_REGISTRY_URL=http://redpanda:8081
+    depends_on:
+      redpanda:
+        condition: service_started
+      redpanda-init:
+        condition: service_completed_successfully
+      postgres-seeder:
+        condition: service_completed_successfully
+    volumes:
+      - ./data/oltp:/app/data
+
+  # ── Consumers ─────────────────────────────────────────────────────────────
+  consumer-postgres:
+    build:
+      context: ./consumer
+    container_name: consumer_postgres
+    command: python consumer_postgres.py
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+      - PG_HOST=postgres
+      - PG_DB=e-commerce
+      - PG_USER=admin
+      - PG_PASSWORD=admin
+    depends_on:
+      postgres:
+        condition: service_healthy 
+      redpanda:
+        condition: service_started
+      redpanda-init:
+        condition: service_completed_successfully
+      postgres-seeder:
+        condition: service_completed_successfully
+    restart: on-failure
+
+  consumer-clickhouse:
+    build:
+      context: ./consumer
+    container_name: consumer_clickhouse
+    command: python consumer_clickhouse.py
+    environment:
+      - PYTHONUNBUFFERED=1
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda:9092
+      - CH_HOST=clickhouse
+      - CH_PORT=8123
+      - CH_DB=ecommerce_dw
+      - CH_USER=admin
+      - CH_PASSWORD=admin
+    depends_on:
+      clickhouse:
+        condition: service_started
+      redpanda:
+        condition: service_started
+      redpanda-init:
+        condition: service_completed_successfully
+    restart: on-failure
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  airflow_db_data:

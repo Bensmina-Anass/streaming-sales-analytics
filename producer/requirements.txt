@@ -1,2 +1,2 @@
+confluent-kafka==2.6.1
 pandas
-kafka-python-ng
