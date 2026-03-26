@@ -201,15 +201,24 @@ services:
   postgres-seeder:
     build:
       context: ./seeder
-    container_name: postgres_seeder
+    container_name: unified_db_seeder
     environment:
+      # Postgres Variables
       - PG_HOST=postgres
       - PG_DB=e-commerce
       - PG_USER=admin
       - PG_PASSWORD=admin
+      # ClickHouse Variables
+      - CH_HOST=clickhouse
+      - CH_PORT=8123
+      - CH_DB=ecommerce_dw
+      - CH_USER=admin
+      - CH_PASSWORD=admin
     depends_on:
       postgres:
         condition: service_healthy  
+      clickhouse:
+        condition: service_started
     volumes:
       - ./data/oltp:/app/data
     restart: "no"
