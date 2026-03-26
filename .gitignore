@@ -1,2 +1,3 @@
 data/producer_state.txt
+metabase-data/postgres/
 data/oltp/producer_state.txt
