@@ -1,5 +1,4 @@
 services:
-
   # ── PostgreSQL ────────────────────────────────────────────────────────────
   postgres:
     image: postgres:15
@@ -259,6 +258,22 @@ services:
         condition: service_completed_successfully
     restart: on-failure
 
+    
+  # ── ML ────────────────────────────────────────────────────────────
+  ml-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ml-runner
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      - PYTHONPATH=/app
+    depends_on:
+      - clickhouse
+    tty: true
+
   consumer-clickhouse:
     build:
       context: ./consumer
@@ -284,4 +299,7 @@ services:
 volumes:
   postgres_data:
   clickhouse_data:
-  airflow_db_data:
+  airflow_db_data:  
+
+
+
