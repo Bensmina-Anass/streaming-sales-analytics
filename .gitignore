@@ -1,2 +1,4 @@
 data/producer_state.txt
 data/oltp/producer_state.txt
+
+airflow/logs/
