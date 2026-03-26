@@ -184,7 +184,7 @@ CREATE DICTIONARY IF NOT EXISTS dict_customers (
     customer_state String
 )
 PRIMARY KEY customer_id
-SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'olist_dw' TABLE 'silver_customers'))
+SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'ecommerce_dw' TABLE 'silver_customers'))
 LIFETIME(MIN 300 MAX 3600)
 LAYOUT(COMPLEX_KEY_HASHED());
 
@@ -194,7 +194,7 @@ CREATE DICTIONARY IF NOT EXISTS dict_sellers (
     seller_state String
 )
 PRIMARY KEY seller_id
-SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'olist_dw' TABLE 'silver_sellers'))
+SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'ecommerce_dw' TABLE 'silver_sellers'))
 LIFETIME(MIN 300 MAX 3600)
 LAYOUT(COMPLEX_KEY_HASHED());
 
@@ -203,6 +203,6 @@ CREATE DICTIONARY IF NOT EXISTS dict_products (
     product_category_name_english String
 )
 PRIMARY KEY product_id
-SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'olist_dw' TABLE 'silver_products'))
+SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'ecommerce_dw' TABLE 'silver_products'))
 LIFETIME(MIN 300 MAX 3600)
 LAYOUT(COMPLEX_KEY_HASHED());
