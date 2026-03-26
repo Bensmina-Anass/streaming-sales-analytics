@@ -1,4 +1,5 @@
--- Build the Central Fact Table
+USE ecommerce_dw;
+-- 2. Build the Central Fact Table
 TRUNCATE TABLE IF EXISTS ecommerce_dw.fact_order_items;
 INSERT INTO ecommerce_dw.fact_order_items
 SELECT 
@@ -8,7 +9,7 @@ SELECT
     i.product_id, 
     i.seller_id,
     
-    -- Date Dimension Keys (coalesce to 0 for missing/null dates)
+    -- These perfectly match the 'date_key' we just generated above!
     toYYYYMMDD(o.order_purchase_timestamp) AS purchase_date_key,
     coalesce(toYYYYMMDD(o.order_approved_at), 0) AS approved_date_key,
     coalesce(toYYYYMMDD(o.order_delivered_carrier_date), 0) AS delivered_carrier_date_key,
@@ -19,18 +20,14 @@ SELECT
     i.price,
     i.freight_value,
     
-    -- Aggregated Payment and Review Data
     coalesce(p.payment_value_total, 0) AS payment_value_total,
     coalesce(p.payment_installments_max, 1) AS payment_installments_max,
     coalesce(p.payment_type_main, 'unknown') AS payment_type_main,
-    
-    -- Cast the average review to Int32 to match the Fact table schema
     CAST(round(coalesce(r.review_score, 0)) AS Int32) AS review_score
 
 FROM ecommerce_dw.silver_order_items i
 JOIN ecommerce_dw.silver_orders o ON i.order_id = o.order_id
 
--- Subquery to aggregate multiple payments per order
 LEFT JOIN (
     SELECT 
         order_id, 
@@ -41,7 +38,6 @@ LEFT JOIN (
     GROUP BY order_id
 ) p ON i.order_id = p.order_id
 
--- Subquery to aggregate multiple reviews per order
 LEFT JOIN (
     SELECT 
         order_id, 

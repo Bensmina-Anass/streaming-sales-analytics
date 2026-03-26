@@ -206,3 +206,60 @@ PRIMARY KEY product_id
 SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'ecommerce_dw' TABLE 'silver_products'))
 LIFETIME(MIN 300 MAX 3600)
 LAYOUT(COMPLEX_KEY_HASHED());
+
+CREATE TABLE IF NOT EXISTS ecommerce_dw.dim_date (
+    date_key Int32,
+    full_date Date,
+    year Int32,
+    quarter Int32,
+    month Int32,
+    month_name String,
+    week_of_year Int32,
+    day_of_month Int32,
+    day_of_week Int32,
+    day_name String,
+    is_weekend UInt8
+) ENGINE = MergeTree() ORDER BY date_key;
+
+CREATE DICTIONARY IF NOT EXISTS ecommerce_dw.dict_date (
+    date_key UInt64, -- Dictionaries prefer UInt64 for numeric keys
+    full_date Date,
+    year Int32,
+    quarter Int32,
+    month Int32,
+    month_name String,
+    week_of_year Int32,
+    day_of_month Int32,
+    day_of_week Int32,
+    day_name String,
+    is_weekend UInt8
+)
+PRIMARY KEY date_key
+SOURCE(CLICKHOUSE(USER 'admin' PASSWORD 'admin' DB 'ecommerce_dw' TABLE 'dim_date'))
+LIFETIME(MIN 0 MAX 0) -- 0 means it never expires, because the calendar never changes!
+LAYOUT(HASHED());
+
+
+-- Seed the Date Dimension once on startup (10 Years starting from Jan 1, 2016)
+INSERT INTO ecommerce_dw.dim_date
+WITH toDate('2016-01-01') AS start_date
+SELECT 
+    toYYYYMMDD(start_date + number) AS date_key,
+    start_date + number AS full_date,
+    toYear(start_date + number) AS year,
+    toQuarter(start_date + number) AS quarter,
+    toMonth(start_date + number) AS month,
+    
+    -- Use 1-based array indexing to get the exact text names!
+    ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][toMonth(start_date + number)] AS month_name, 
+    
+    toISOWeek(start_date + number) AS week_of_year,
+    toDayOfMonth(start_date + number) AS day_of_month,
+    toDayOfWeek(start_date + number) AS day_of_week, 
+    
+    -- 1 = Monday, 7 = Sunday
+    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][toDayOfWeek(start_date + number)] AS day_name,   
+    
+    if(toDayOfWeek(start_date + number) IN (6, 7), 1, 0) AS is_weekend
+FROM system.numbers
+LIMIT 3650;
