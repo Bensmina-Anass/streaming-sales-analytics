@@ -1,0 +1,28 @@
+[2026-03-26T17:22:00.897+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: warehouse_pipeline.bronze_to_silver scheduled__2026-03-26T17:21:00+00:00 [queued]>
+[2026-03-26T17:22:00.901+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: warehouse_pipeline.bronze_to_silver scheduled__2026-03-26T17:21:00+00:00 [queued]>
+[2026-03-26T17:22:00.902+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2026-03-26T17:22:00.910+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): bronze_to_silver> on 2026-03-26 17:21:00+00:00
+[2026-03-26T17:22:00.915+0000] {standard_task_runner.py:57} INFO - Started process 650 to run task
+[2026-03-26T17:22:00.917+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'warehouse_pipeline', 'bronze_to_silver', 'scheduled__2026-03-26T17:21:00+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/warehouse_pipeline.py', '--cfg-path', '/tmp/tmp9du2_pq7']
+[2026-03-26T17:22:00.919+0000] {standard_task_runner.py:85} INFO - Job 37: Subtask bronze_to_silver
+[2026-03-26T17:22:00.946+0000] {task_command.py:415} INFO - Running <TaskInstance: warehouse_pipeline.bronze_to_silver scheduled__2026-03-26T17:21:00+00:00 [running]> on host 3ecc8c9d1264
+[2026-03-26T17:22:00.994+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='warehouse_pipeline' AIRFLOW_CTX_TASK_ID='bronze_to_silver' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T17:21:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T17:21:00+00:00'
+[2026-03-26T17:22:01.004+0000] {logging_mixin.py:151} INFO - Executing statement 1/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.005+0000] {logging_mixin.py:151} INFO - Executing statement 2/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.013+0000] {logging_mixin.py:151} INFO - Executing statement 3/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.014+0000] {logging_mixin.py:151} INFO - Executing statement 4/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.022+0000] {logging_mixin.py:151} INFO - Executing statement 5/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.023+0000] {logging_mixin.py:151} INFO - Executing statement 6/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.030+0000] {logging_mixin.py:151} INFO - Executing statement 7/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.032+0000] {logging_mixin.py:151} INFO - Executing statement 8/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.038+0000] {logging_mixin.py:151} INFO - Executing statement 9/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.040+0000] {logging_mixin.py:151} INFO - Executing statement 10/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.046+0000] {logging_mixin.py:151} INFO - Executing statement 11/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.048+0000] {logging_mixin.py:151} INFO - Executing statement 12/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.052+0000] {logging_mixin.py:151} INFO - Executing statement 13/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.054+0000] {logging_mixin.py:151} INFO - Executing statement 14/14 from transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.060+0000] {logging_mixin.py:151} INFO - Completed SQL script: transform_bronze_to_silver.sql
+[2026-03-26T17:22:01.060+0000] {python.py:194} INFO - Done. Returned value was: None
+[2026-03-26T17:22:01.066+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=warehouse_pipeline, task_id=bronze_to_silver, execution_date=20260326T172100, start_date=20260326T172200, end_date=20260326T172201
+[2026-03-26T17:22:01.089+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2026-03-26T17:22:01.103+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

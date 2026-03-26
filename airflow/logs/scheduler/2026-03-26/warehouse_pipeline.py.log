@@ -1,0 +1,425 @@
+[2026-03-26T16:54:08.583+0000] {processor.py:157} INFO - Started process (PID=170) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:08.583+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:54:08.584+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:08.584+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:09.224+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:09.235+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:09.234+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:54:09.244+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:09.244+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:54:09.312+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.730 seconds
+[2026-03-26T16:54:39.439+0000] {processor.py:157} INFO - Started process (PID=177) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:39.439+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:54:39.440+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:39.440+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:39.689+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:54:39.707+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:39.707+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:54:39.719+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:54:39.719+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:54:39.727+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.290 seconds
+[2026-03-26T16:55:09.818+0000] {processor.py:157} INFO - Started process (PID=183) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:09.823+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:55:09.823+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:09.823+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:10.069+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:10.081+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:10.081+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:55:10.091+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:10.091+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:55:10.104+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.288 seconds
+[2026-03-26T16:55:40.230+0000] {processor.py:157} INFO - Started process (PID=189) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:40.230+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:55:40.230+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:40.230+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:40.473+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:55:40.487+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:40.486+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:55:40.499+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:55:40.499+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:55:40.511+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.283 seconds
+[2026-03-26T16:56:10.639+0000] {processor.py:157} INFO - Started process (PID=195) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:10.644+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:56:10.645+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:10.645+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:10.889+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:10.902+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:10.902+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:56:10.912+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:10.912+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:56:10.926+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.289 seconds
+[2026-03-26T16:56:41.136+0000] {processor.py:157} INFO - Started process (PID=201) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:41.136+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:56:41.136+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:41.136+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:41.300+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:56:41.314+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:41.314+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:56:41.325+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:56:41.325+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:56:41.408+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.275 seconds
+[2026-03-26T16:57:11.537+0000] {processor.py:157} INFO - Started process (PID=207) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:11.542+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:57:11.543+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:11.543+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:11.701+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:11.715+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:11.714+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:57:11.725+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:11.725+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:57:11.739+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.203 seconds
+[2026-03-26T16:57:41.852+0000] {processor.py:157} INFO - Started process (PID=239) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:41.853+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:57:41.853+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:41.853+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:42.026+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:57:42.039+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:42.039+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:57:42.052+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:57:42.052+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:57:42.065+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.216 seconds
+[2026-03-26T16:58:12.178+0000] {processor.py:157} INFO - Started process (PID=252) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:12.182+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:58:12.183+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:58:12.182+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:12.357+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:12.372+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:58:12.371+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:58:12.385+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:58:12.385+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T16:30:00+00:00, run_after=2026-03-26T16:45:00+00:00
+[2026-03-26T16:58:12.399+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.223 seconds
+[2026-03-26T16:58:42.511+0000] {processor.py:157} INFO - Started process (PID=288) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:42.511+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:58:42.511+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:58:42.511+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:42.678+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:58:42.692+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:58:42.692+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:58:42.712+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.203 seconds
+[2026-03-26T16:59:12.814+0000] {processor.py:157} INFO - Started process (PID=294) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:12.819+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:59:12.819+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:59:12.819+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:12.982+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:13.001+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:59:13.000+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:59:13.024+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.212 seconds
+[2026-03-26T16:59:43.136+0000] {processor.py:157} INFO - Started process (PID=300) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:43.137+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T16:59:43.138+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:59:43.137+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:43.295+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T16:59:43.309+0000] {logging_mixin.py:151} INFO - [2026-03-26T16:59:43.309+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T16:59:43.421+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.286 seconds
+[2026-03-26T17:00:13.538+0000] {processor.py:157} INFO - Started process (PID=318) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:13.543+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:00:13.544+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:13.544+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:13.732+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:13.747+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:13.747+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:00:13.760+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:13.760+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:00:13.772+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.236 seconds
+[2026-03-26T17:00:43.885+0000] {processor.py:157} INFO - Started process (PID=324) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:43.908+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:00:43.909+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:43.909+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:44.104+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:00:44.118+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:44.118+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:00:44.129+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:00:44.129+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:00:44.187+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.304 seconds
+[2026-03-26T17:01:14.299+0000] {processor.py:157} INFO - Started process (PID=330) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:14.299+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:01:14.300+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:14.299+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:14.463+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:14.477+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:14.477+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:01:14.489+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:14.489+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:01:14.500+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.203 seconds
+[2026-03-26T17:01:44.622+0000] {processor.py:157} INFO - Started process (PID=336) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:44.622+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:01:44.623+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:44.623+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:44.794+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:01:44.809+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:44.809+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:01:44.823+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:01:44.823+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:01:44.835+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.215 seconds
+[2026-03-26T17:02:14.941+0000] {processor.py:157} INFO - Started process (PID=342) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:14.942+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:02:14.942+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:14.942+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:15.120+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:15.135+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:15.135+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:02:15.148+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:15.148+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:02:15.161+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.221 seconds
+[2026-03-26T17:02:45.277+0000] {processor.py:157} INFO - Started process (PID=348) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:45.277+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:02:45.277+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:45.277+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:45.435+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:02:45.450+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:45.450+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:02:45.462+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:02:45.462+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:02:45.506+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.231 seconds
+[2026-03-26T17:03:15.630+0000] {processor.py:157} INFO - Started process (PID=354) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:15.635+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:03:15.636+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:15.636+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:15.806+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:15.823+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:15.822+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:03:15.835+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:15.835+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:03:15.849+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.221 seconds
+[2026-03-26T17:03:45.983+0000] {processor.py:157} INFO - Started process (PID=360) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:45.984+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:03:45.984+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:45.984+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:46.156+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:03:46.170+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:46.170+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:03:46.185+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:03:46.185+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:03:46.198+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.217 seconds
+[2026-03-26T17:04:16.311+0000] {processor.py:157} INFO - Started process (PID=366) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:16.315+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:04:16.316+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:16.316+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:16.496+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:16.512+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:16.512+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:04:16.528+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:16.527+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:04:16.541+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.232 seconds
+[2026-03-26T17:04:46.655+0000] {processor.py:157} INFO - Started process (PID=372) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:46.655+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:04:46.655+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:46.655+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:46.833+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:04:46.849+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:46.849+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:04:46.862+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:04:46.862+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:04:46.870+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.218 seconds
+[2026-03-26T17:05:16.975+0000] {processor.py:157} INFO - Started process (PID=378) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:16.980+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:05:16.981+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:16.980+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:17.141+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:17.156+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:17.156+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:05:17.167+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:17.167+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:05:17.184+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.210 seconds
+[2026-03-26T17:05:47.302+0000] {processor.py:157} INFO - Started process (PID=384) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:47.302+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:05:47.303+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:47.303+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:47.468+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:05:47.484+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:47.483+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:05:47.497+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:05:47.497+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:05:47.526+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.226 seconds
+[2026-03-26T17:06:17.652+0000] {processor.py:157} INFO - Started process (PID=390) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:17.656+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:06:17.657+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:17.657+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:17.816+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:17.830+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:17.830+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:06:17.842+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:17.842+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:06:17.855+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.205 seconds
+[2026-03-26T17:06:47.966+0000] {processor.py:157} INFO - Started process (PID=396) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:47.967+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:06:47.967+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:47.967+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:48.132+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:06:48.148+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:48.147+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:06:48.166+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:06:48.166+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:06:48.182+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.218 seconds
+[2026-03-26T17:07:18.308+0000] {processor.py:157} INFO - Started process (PID=402) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:18.353+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:07:18.354+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:18.354+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:18.519+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:18.533+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:18.533+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:07:18.546+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:18.545+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:07:18.563+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.258 seconds
+[2026-03-26T17:07:48.698+0000] {processor.py:157} INFO - Started process (PID=408) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:48.698+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:07:48.699+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:48.699+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:48.862+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:07:48.877+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:48.877+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:07:48.892+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:07:48.892+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:07:48.936+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.240 seconds
+[2026-03-26T17:08:19.057+0000] {processor.py:157} INFO - Started process (PID=414) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:19.156+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:08:19.157+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:19.156+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:19.326+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:19.340+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:19.340+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:08:19.355+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:19.355+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:08:19.370+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.316 seconds
+[2026-03-26T17:08:49.497+0000] {processor.py:157} INFO - Started process (PID=420) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:49.497+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:08:49.497+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:49.497+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:49.670+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:08:49.687+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:49.686+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:08:49.698+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:08:49.698+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:08:49.726+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.231 seconds
+[2026-03-26T17:09:19.846+0000] {processor.py:157} INFO - Started process (PID=426) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:19.851+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:09:19.852+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:19.852+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:20.013+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:20.027+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:20.027+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:09:20.042+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:20.042+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:09:20.055+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.211 seconds
+[2026-03-26T17:09:50.177+0000] {processor.py:157} INFO - Started process (PID=432) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:50.181+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:09:50.182+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:50.181+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:50.342+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:09:50.356+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:50.356+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:09:50.369+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:09:50.369+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:09:50.382+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.207 seconds
+[2026-03-26T17:10:20.501+0000] {processor.py:157} INFO - Started process (PID=438) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:20.501+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:10:20.501+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:20.501+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:20.663+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:20.678+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:20.678+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:10:20.690+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:20.690+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:10:20.727+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.228 seconds
+[2026-03-26T17:10:50.842+0000] {processor.py:157} INFO - Started process (PID=444) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:50.842+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:10:50.842+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:50.842+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:51.005+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:10:51.020+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:51.020+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:10:51.052+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:10:51.052+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:10:51.116+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.277 seconds
+[2026-03-26T17:11:21.244+0000] {processor.py:157} INFO - Started process (PID=450) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:21.249+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:11:21.249+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:21.249+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:21.421+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:21.436+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:21.435+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:11:21.449+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:21.448+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:00:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:11:21.457+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.216 seconds
+[2026-03-26T17:11:45.336+0000] {processor.py:157} INFO - Started process (PID=456) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:45.337+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:11:45.337+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:45.337+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:45.509+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:11:45.604+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:45.604+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:warehouse_pipeline' as access control is unset.
+[2026-03-26T17:11:45.604+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:45.604+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:11:45.618+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:11:45.618+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:10:00+00:00, run_after=2026-03-26T17:11:00+00:00
+[2026-03-26T17:11:45.630+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.296 seconds
+[2026-03-26T17:12:15.666+0000] {processor.py:157} INFO - Started process (PID=474) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:15.670+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:12:15.671+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:15.671+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:15.833+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:15.846+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:15.846+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:12:15.861+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:15.861+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:12:00+00:00, run_after=2026-03-26T17:13:00+00:00
+[2026-03-26T17:12:15.874+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.211 seconds
+[2026-03-26T17:12:45.973+0000] {processor.py:157} INFO - Started process (PID=480) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:45.974+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:12:45.974+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:45.974+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:46.143+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:12:46.158+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:46.158+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:12:46.172+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:12:46.172+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:12:00+00:00, run_after=2026-03-26T17:13:00+00:00
+[2026-03-26T17:12:46.193+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.222 seconds
+[2026-03-26T17:13:16.307+0000] {processor.py:157} INFO - Started process (PID=492) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:16.312+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:13:16.313+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:16.313+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:16.475+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:16.489+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:16.489+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:13:16.506+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:16.506+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:13:00+00:00, run_after=2026-03-26T17:14:00+00:00
+[2026-03-26T17:13:16.519+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.213 seconds
+[2026-03-26T17:13:46.650+0000] {processor.py:157} INFO - Started process (PID=498) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:46.650+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:13:46.651+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:46.651+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:46.814+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:13:46.828+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:46.827+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:13:46.843+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:13:46.842+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:13:00+00:00, run_after=2026-03-26T17:14:00+00:00
+[2026-03-26T17:13:46.856+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.209 seconds
+[2026-03-26T17:14:16.982+0000] {processor.py:157} INFO - Started process (PID=510) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:16.987+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:14:16.988+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:16.988+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:17.147+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:17.160+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:17.160+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:14:17.174+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:17.174+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:14:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:14:17.188+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.208 seconds
+[2026-03-26T17:14:47.307+0000] {processor.py:157} INFO - Started process (PID=516) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:47.308+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:14:47.309+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:47.308+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:47.488+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:14:47.504+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:47.503+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:14:47.518+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:14:47.517+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:14:00+00:00, run_after=2026-03-26T17:15:00+00:00
+[2026-03-26T17:14:47.532+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.228 seconds
+[2026-03-26T17:15:17.637+0000] {processor.py:157} INFO - Started process (PID=528) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:17.642+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:15:17.643+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:17.642+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:17.822+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:17.838+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:17.838+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:15:17.853+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:17.853+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:15:00+00:00, run_after=2026-03-26T17:16:00+00:00
+[2026-03-26T17:15:17.866+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.231 seconds
+[2026-03-26T17:15:47.975+0000] {processor.py:157} INFO - Started process (PID=534) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:47.976+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:15:47.976+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:47.976+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:48.135+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:15:48.149+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:48.149+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:15:48.163+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:15:48.162+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:15:00+00:00, run_after=2026-03-26T17:16:00+00:00
+[2026-03-26T17:15:48.177+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.203 seconds
+[2026-03-26T17:16:18.299+0000] {processor.py:157} INFO - Started process (PID=546) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:18.304+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:16:18.305+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:18.305+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:18.481+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:18.495+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:18.495+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:16:18.509+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:18.509+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:16:00+00:00, run_after=2026-03-26T17:17:00+00:00
+[2026-03-26T17:16:18.517+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.219 seconds
+[2026-03-26T17:16:48.635+0000] {processor.py:157} INFO - Started process (PID=552) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:48.636+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:16:48.636+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:48.636+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:48.816+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:16:48.833+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:48.832+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:16:48.847+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:16:48.847+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:16:00+00:00, run_after=2026-03-26T17:17:00+00:00
+[2026-03-26T17:16:48.938+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.305 seconds
+[2026-03-26T17:17:19.051+0000] {processor.py:157} INFO - Started process (PID=564) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:19.056+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:17:19.057+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:19.056+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:19.218+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:19.232+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:19.232+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:17:19.246+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:19.246+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:17:00+00:00, run_after=2026-03-26T17:18:00+00:00
+[2026-03-26T17:17:19.259+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.210 seconds
+[2026-03-26T17:17:49.382+0000] {processor.py:157} INFO - Started process (PID=570) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:49.382+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:17:49.383+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:49.383+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:49.541+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:17:49.556+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:49.556+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:17:49.570+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:17:49.570+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:17:00+00:00, run_after=2026-03-26T17:18:00+00:00
+[2026-03-26T17:17:49.584+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.203 seconds
+[2026-03-26T17:18:19.707+0000] {processor.py:157} INFO - Started process (PID=582) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:19.712+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:18:19.712+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:19.712+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:19.875+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:19.889+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:19.888+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:18:19.904+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:19.904+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:18:00+00:00, run_after=2026-03-26T17:19:00+00:00
+[2026-03-26T17:18:19.918+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.213 seconds
+[2026-03-26T17:18:50.026+0000] {processor.py:157} INFO - Started process (PID=588) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:50.027+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:18:50.027+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:50.027+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:50.419+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:18:50.434+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:50.433+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:18:50.454+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:18:50.454+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:18:00+00:00, run_after=2026-03-26T17:19:00+00:00
+[2026-03-26T17:18:50.466+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.444 seconds
+[2026-03-26T17:19:20.577+0000] {processor.py:157} INFO - Started process (PID=600) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:20.577+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:19:20.577+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:20.577+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:20.792+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:20.813+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:20.813+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:19:20.828+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:20.828+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:19:00+00:00, run_after=2026-03-26T17:20:00+00:00
+[2026-03-26T17:19:20.838+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.264 seconds
+[2026-03-26T17:19:50.950+0000] {processor.py:157} INFO - Started process (PID=606) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:50.955+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:19:50.956+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:50.955+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:51.151+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:19:51.166+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:51.166+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:19:51.181+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:19:51.181+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:19:00+00:00, run_after=2026-03-26T17:20:00+00:00
+[2026-03-26T17:19:51.191+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.243 seconds
+[2026-03-26T17:20:21.313+0000] {processor.py:157} INFO - Started process (PID=618) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:21.313+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:20:21.314+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:21.314+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:21.476+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:21.492+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:21.492+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:20:21.507+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:21.507+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:20:00+00:00, run_after=2026-03-26T17:21:00+00:00
+[2026-03-26T17:20:21.589+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.278 seconds
+[2026-03-26T17:20:51.723+0000] {processor.py:157} INFO - Started process (PID=624) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:51.728+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:20:51.729+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:51.729+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:51.892+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:20:51.907+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:51.907+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:20:51.920+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:20:51.920+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:20:00+00:00, run_after=2026-03-26T17:21:00+00:00
+[2026-03-26T17:20:51.933+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.212 seconds
+[2026-03-26T17:21:22.052+0000] {processor.py:157} INFO - Started process (PID=636) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:22.053+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:21:22.053+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:22.053+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:22.216+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:22.230+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:22.230+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:21:22.244+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:22.244+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:21:00+00:00, run_after=2026-03-26T17:22:00+00:00
+[2026-03-26T17:21:22.288+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.238 seconds
+[2026-03-26T17:21:52.409+0000] {processor.py:157} INFO - Started process (PID=642) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:52.483+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:21:52.484+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:52.484+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:52.661+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:21:52.675+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:52.675+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:21:52.690+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:21:52.690+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:21:00+00:00, run_after=2026-03-26T17:22:00+00:00
+[2026-03-26T17:21:52.707+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.301 seconds
+[2026-03-26T17:22:22.816+0000] {processor.py:157} INFO - Started process (PID=654) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:22.817+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:22:22.817+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:22.817+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:23.002+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:23.020+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:23.019+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:22:23.036+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:23.035+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:22:00+00:00, run_after=2026-03-26T17:23:00+00:00
+[2026-03-26T17:22:23.049+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.235 seconds
+[2026-03-26T17:22:53.156+0000] {processor.py:157} INFO - Started process (PID=660) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:53.161+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:22:53.162+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:53.161+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:53.340+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:22:53.357+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:53.357+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:22:53.372+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:22:53.371+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:22:00+00:00, run_after=2026-03-26T17:23:00+00:00
+[2026-03-26T17:22:53.381+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.227 seconds
+[2026-03-26T17:23:23.484+0000] {processor.py:157} INFO - Started process (PID=672) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:23.485+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:23:23.485+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:23.485+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:23.663+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:23.679+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:23.679+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:23:23.693+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:23.693+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:23:00+00:00, run_after=2026-03-26T17:24:00+00:00
+[2026-03-26T17:23:23.702+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.221 seconds
+[2026-03-26T17:23:53.801+0000] {processor.py:157} INFO - Started process (PID=678) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:53.806+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:23:53.806+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:53.806+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:53.980+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:23:53.997+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:53.997+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:23:54.012+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:23:54.012+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:23:00+00:00, run_after=2026-03-26T17:24:00+00:00
+[2026-03-26T17:23:54.024+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.225 seconds
+[2026-03-26T17:24:24.148+0000] {processor.py:157} INFO - Started process (PID=690) to work on /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:24:24.149+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/warehouse_pipeline.py for tasks to queue
+[2026-03-26T17:24:24.149+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:24:24.149+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:24:24.312+0000] {processor.py:839} INFO - DAG(s) dict_keys(['warehouse_pipeline']) retrieved from /opt/airflow/dags/warehouse_pipeline.py
+[2026-03-26T17:24:24.329+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:24:24.328+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2026-03-26T17:24:24.343+0000] {logging_mixin.py:151} INFO - [2026-03-26T17:24:24.343+0000] {dag.py:3696} INFO - Setting next_dagrun for warehouse_pipeline to 2026-03-26T17:24:00+00:00, run_after=2026-03-26T17:25:00+00:00
+[2026-03-26T17:24:24.355+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/warehouse_pipeline.py took 0.208 seconds
