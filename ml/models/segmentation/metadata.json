@@ -1,0 +1,14 @@
+{
+  "task": "segmentation",
+  "best_model_name": "kmeans_3",
+  "selection_metric": "silhouette_score",
+  "silhouette_score": 0.7180140559042736,
+  "n_clusters": 3,
+  "features": [
+    "recency",
+    "frequency",
+    "monetary",
+    "avg_order_value"
+  ],
+  "saved_at": "2026-03-26T00:26:25.624226"
+}
