@@ -7,4 +7,5 @@ def get_clickhouse_client():
         port=8123,
         username="admin",
         password="admin",
+        database="ecommerce_dw",
     )
