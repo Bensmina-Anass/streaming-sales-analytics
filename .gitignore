@@ -1,6 +1,30 @@
-data/producer_state.txt
-metabase-data/postgres/
-data/oltp/producer_state.txt
+# State files
+**/producer_state.txt
 
-airflow/logs/*
+# Airflow logs
 airflow/logs/
+
+# Metabase data
+metabase-data/
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/venv/
+**/.venv/
+
+# ML artifacts (use DVC or similar for versioning these)
+ml/models/
+ml/outputs/
+
+# Environment / secrets
+.env
+*.env
+
+# PDF / misc
+descriptif_projet.pdf
+
+# Claude analysis hhh
+./DW_PROJECT_ANALYSIS.md

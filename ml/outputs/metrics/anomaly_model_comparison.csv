@@ -1,3 +1,0 @@
-model_name,total_points,num_anomalies,anomaly_ratio
-z_score,611,0,0.0
-isolation_forest,611,13,0.02127659574468085

@@ -1,4 +1,0 @@
-forecast_month,forecast_month_date,predicted_revenue,best_model_name
-2018-09,2018-09-01,1057803.0383609785,random_forest
-2018-10,2018-10-01,1034431.3349037564,random_forest
-2018-11,2018-11-01,1038724.2517693118,random_forest
