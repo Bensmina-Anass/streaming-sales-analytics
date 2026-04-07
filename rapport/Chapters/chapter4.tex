@@ -1,0 +1,204 @@
+\chapter{Réalisation}
+
+Ce dernier chapitre présente la concrétisation technique du projet. Après avoir défini l'architecture et les modèles de données, nous détaillons ici l'implémentation effective de chaque composant, les choix d'ingénierie effectués lors du développement, et les résultats obtenus.
+
+\section{Environnement et outils de développement}
+
+\subsection{Stack technique}
+
+La réalisation du projet s'appuie sur un écosystème entièrement conteneurisé~:
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+  \setlength{\itemsep}{0.4em}
+
+\item \textbf{Langage principal~:} Python 3.11 — utilisé pour le producer, les consumers, les scripts ML et les DAGs Airflow.
+
+\item \textbf{Broker de messages~:} Redpanda v24.2.26 — broker compatible Kafka sans dépendance JVM, déployé en mode single-node avec Schema Registry et Pandaproxy embarqués. 4 topics créés automatiquement à l'init~: \texttt{topic\_orders}, \texttt{topic\_order\_items}, \texttt{topic\_order\_payments}, \texttt{topic\_order\_reviews}.
+
+\item \textbf{Base OLTP~:} PostgreSQL 15 — 8 tables avec contraintes FK, healthcheck SQL pour garantir la disponibilité avant le démarrage des consumers.
+
+\item \textbf{Base OLAP~:} ClickHouse (latest) — engine MergeTree pour toutes les tables transactionnelles, dictionnaires COMPLEX\_KEY\_HASHED pour les dimensions, engine MergeTree avec clé temporelle pour \texttt{fact\_order\_items}.
+
+\item \textbf{Client Kafka~:} \texttt{confluent-kafka} — bibliothèque C native (librdkafka), plus performante que \texttt{kafka-python} pour les cas à fort débit.
+
+\item \textbf{Client ClickHouse~:} \texttt{clickhouse-connect} — bibliothèque officielle ClickHouse supportant l'insertion vectorisée via \texttt{client.insert()}.
+
+\item \textbf{Orchestration~:} Apache Airflow 2.x avec LocalExecutor, base de méta-données PostgreSQL 13 dédiée.
+
+\item \textbf{Machine Learning~:} scikit-learn — GradientBoostingRegressor, RandomForestRegressor, KMeans, IsolationForest. Pandas pour la manipulation des données.
+
+\item \textbf{BI~:} Metabase v0.56.1 — instance configurée avec PostgreSQL comme base de méta-données, connectée à ClickHouse pour les dashboards.
+
+\end{itemize}
+
+\subsection{Déploiement}
+
+L'ensemble du projet se déploie en une seule commande~:
+
+\begin{minted}[bgcolor=bg, fontsize=\small]{bash}
+docker compose up --build -d
+\end{minted}
+
+Le démarrage ordonné des services est garanti par les clauses \texttt{depends\_on} avec \texttt{condition: service\_healthy}. Le seeder et le producer s'exécutent automatiquement, le pipeline est opérationnel sans intervention manuelle.
+
+\section{Implémentation du producer}
+
+\subsection{Simulation du streaming chronologique}
+
+Le producer simule un flux d'événements transactionnels à partir des fichiers CSV Olist. L'implémentation garantit plusieurs propriétés importantes~:
+
+\textbf{Ordre chronologique~:} Les commandes sont triées par \texttt{order\_purchase\_timestamp} avant d'être streamées, assurant que les consumers reçoivent les événements dans l'ordre naturel des transactions.
+
+\textbf{Cohérence transactionnelle~:} Pour chaque chunk de 100 commandes, le producer collecte les articles, paiements et avis associés via un filtre sur les \texttt{order\_id} du chunk, puis les publie dans leurs topics respectifs au sein du même cycle.
+
+\textbf{Gestion d'état~:} Un fichier \texttt{producer\_state.txt} persiste le timestamp du dernier enregistrement streamé. En cas de redémarrage du container, le producer reprend depuis cet offset sans rejouer les données déjà ingérées.
+
+\textbf{Fiabilité de livraison~:} La configuration \texttt{acks=all} garantit que le broker accuse réception de chaque message avant que le producer passe au suivant. Un callback \texttt{on\_delivery} logge les erreurs d'envoi.
+
+\begin{minted}[bgcolor=bg, fontsize=\small]{python}
+conf = {
+    "bootstrap.servers": BOOTSTRAP_SERVERS,
+    "client.id": "olist-producer",
+    "acks": "all",
+    "retries": 5,
+    "retry.backoff.ms": 300,
+}
+\end{minted}
+
+\section{Implémentation des consumers}
+
+\subsection{Consumer ClickHouse}
+
+Le consumer ClickHouse implémente un pattern de buffering par topic pour optimiser les insertions~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Buffer par topic~:} Un dictionnaire de listes maintient les lignes en attente pour chaque table cible.
+  \item \textbf{Flush conditionnel~:} Le buffer est flushé si une table dépasse 500 lignes OU si 10 secondes se sont écoulées depuis le dernier flush.
+  \item \textbf{Commit après insertion~:} Les offsets Kafka ne sont committés qu'après confirmation d'insertion par ClickHouse, garantissant l'at-least-once delivery.
+  \item \textbf{Schéma typé~:} Un dictionnaire \texttt{SCHEMA} par topic définit le nom, le type, la nullabilité et la valeur par défaut de chaque colonne, permettant un casting rigoureux avant insertion.
+\end{itemize}
+
+\subsection{Consumer PostgreSQL}
+
+Le consumer PostgreSQL doit gérer la contrainte d'intégrité référentielle de PostgreSQL~: les lignes d'articles ne peuvent pas être insérées avant leur commande parente. L'implémentation introduit~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Ordre d'insertion FK-safe~:} Les topics sont traités dans l'ordre \texttt{topic\_orders} $\rightarrow$ \texttt{topic\_order\_items} $\rightarrow$ \texttt{topic\_order\_payments} $\rightarrow$ \texttt{topic\_order\_reviews} à chaque cycle.
+  \item \textbf{Upserts idempotents~:} Toutes les insertions utilisent \texttt{ON CONFLICT (...) DO NOTHING} pour éviter les doublons en cas de replay.
+  \item \textbf{Dead-letter queue~:} Les enregistrements qui échouent après 10 tentatives (ex~: FK violation persistante) sont écartés et loggés plutôt que de bloquer le pipeline.
+\end{itemize}
+
+\section{Implémentation du pipeline de transformation}
+
+\subsection{Transformation Bronze vers Silver}
+
+Le script \texttt{transform\_bronze\_to\_silver.sql} exécute sept instructions SQL séquentielles~:
+
+\begin{enumerate}
+  \setlength{\itemsep}{0.3em}
+  \item \textbf{silver\_customers~:} Jointure avec \texttt{bronze\_geolocation} sur le code postal pour ajouter \texttt{lat}/\texttt{lng}. Utilisation de \texttt{any()} pour résoudre les codes postaux multi-coordonnées.
+  \item \textbf{silver\_sellers~:} Même enrichissement géographique que les clients.
+  \item \textbf{silver\_products~:} \texttt{COALESCE} avec \texttt{bronze\_category\_translation} pour la traduction, avec fallback sur le nom portugais si la traduction est absente.
+  \item \textbf{silver\_orders, silver\_order\_items, silver\_order\_payments~:} Pass-through intégral depuis Bronze.
+  \item \textbf{silver\_order\_reviews~:} Projection sans les colonnes de texte libre.
+\end{enumerate}
+
+Chaque transformation commence par un \texttt{TRUNCATE} de la table cible pour garantir l'idempotence des exécutions répétées par Airflow.
+
+\subsection{Transformation Silver vers Gold}
+
+Le script \texttt{transform\_silver\_to\_gold.sql} construit la table de faits centrale via une requête multi-jointures~:
+
+\begin{minted}[bgcolor=bg, fontsize=\small]{sql}
+INSERT INTO fact_order_items
+SELECT
+    i.order_id, i.order_item_id,
+    o.customer_id, i.product_id, i.seller_id,
+    toYYYYMMDD(o.order_purchase_timestamp) AS purchase_date_key,
+    i.price, i.freight_value,
+    coalesce(p.payment_value_total, 0),
+    coalesce(p.payment_type_main, 'unknown'),
+    CAST(round(coalesce(r.review_score, 0)) AS Int32)
+FROM silver_order_items i
+JOIN silver_orders o ON i.order_id = o.order_id
+LEFT JOIN (...) p ON i.order_id = p.order_id
+LEFT JOIN (...) r ON i.order_id = r.order_id;
+\end{minted}
+
+Les paiements sont agrégés par commande (somme, maximum d'échéances, mode de paiement principal) via une sous-requête, et les avis sont moyennés par commande.
+
+\section{Module Machine Learning}
+
+\subsection{Pipeline de feature engineering}
+
+Le module \texttt{feature\_engineering.py} expose trois fonctions principales~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \texttt{build\_monthly\_sales\_features()}~: Agrège les revenus par mois pour les commandes livrées, construit les lags temporels (1, 2, 3 mois) et l'indice mensuel. Les features de lag sont utilisées pour les modèles de régression supervisée.
+  \item \texttt{build\_customer\_segmentation\_features()}~: Calcule les métriques RFM par \texttt{customer\_unique\_id} à partir d'une date de snapshot (max + 1 jour). Ajoute le panier moyen comme quatrième feature.
+  \item \texttt{build\_daily\_sales\_features()}~: Agrège les revenus par date pour la détection d'anomalies journalières.
+\end{itemize}
+
+\subsection{Résultats et réinjection}
+
+Les modèles entraînés produisent des fichiers CSV dans \texttt{ml/outputs/predictions/} qui sont ensuite insérés dans ClickHouse via les scripts \texttt{integration/insert\_*.py}. Cette réinjection permet à Metabase d'afficher les prévisions et segments directement dans les dashboards sans couche intermédiaire.
+
+\section{Dashboards Metabase}
+
+Metabase v0.56.1 est configuré avec ClickHouse comme source de données principale. Les dashboards exploitent la couche Gold via des questions SQL et des questions natives, avec les fonctionnalités suivantes~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{KPIs de ventes~:} Revenu total, nombre de commandes, panier moyen, score d'avis moyen
+  \item \textbf{Analyse temporelle~:} Évolution mensuelle du revenu, comparaison année-sur-année
+  \item \textbf{Analyse géographique~:} Répartition des ventes par État brésilien
+  \item \textbf{Top catégories~:} Classement des catégories de produits par revenu généré
+  \item \textbf{Distribution des paiements~:} Répartition par type de paiement (carte, boleto, voucher)
+  \item \textbf{Segments clients~:} Visualisation des clusters K-Means avec leurs caractéristiques RFM
+  \item \textbf{Prévisions de ventes~:} Courbe de forecast sur 3 mois avec intervalle de confiance
+\end{itemize}
+
+\section{Tests et validation}
+
+\subsection{Validation du pipeline de streaming}
+
+La validation du pipeline en conditions réelles s'effectue via les commandes de monitoring suivantes~:
+
+\textbf{Surveillance PostgreSQL~:}
+\begin{minted}[bgcolor=bg, fontsize=\small]{bash}
+watch -n 5 "docker exec oltp_postgres psql -U admin -d e-commerce \
+  -c 'SELECT COUNT(*) FROM orders, COUNT(*) FROM order_items'"
+\end{minted}
+
+\textbf{Surveillance ClickHouse (couche Bronze)~:}
+\begin{minted}[bgcolor=bg, fontsize=\small]{bash}
+watch -n 5 "docker exec olap_clickhouse clickhouse-client \
+  --query 'SELECT table, count() FROM ecommerce_dw.bronze_orders'"
+\end{minted}
+
+\subsection{Validation de la couche Gold}
+
+La cohérence de la table de faits est vérifiée par des requêtes de contrôle~: le nombre de lignes dans \texttt{fact\_order\_items} doit correspondre au nombre de lignes dans \texttt{silver\_order\_items}, et les clés de date doivent toutes avoir une correspondance dans \texttt{dim\_date}.
+
+\subsection{Limitations identifiées et améliorations prévues}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{5cm} p{8.5cm}}
+\toprule
+\textbf{Limitation} & \textbf{Amélioration recommandée} \\
+\midrule
+Transformations SQL full-replace (TRUNCATE + INSERT) & Remplacer par des chargements incrémentaux avec watermark temporel \\
+Absence de validation entre Bronze et Silver & Ajouter une tâche Airflow de data quality (assertions NOT NULL, unicité) \\
+Module ML non câblé dans Airflow & Créer des DAGs de réentraînement hebdomadaire \\
+Credentials en clair dans docker-compose & Externaliser dans un fichier .env non versionné \\
+KSQL-DB déployé mais inutilisé & Supprimer ou implémenter des transformations en-stream \\
+Pas d'observabilité & Ajouter Prometheus + Grafana pour monitorer le consumer lag \\
+\bottomrule
+\end{tabular}
+\caption{Limitations identifiées et axes d'amélioration}
+\end{table}

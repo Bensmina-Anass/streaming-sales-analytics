@@ -1,0 +1,82 @@
+\chapter{Spécification des besoins}
+
+\section{Spécification générale}
+
+\subsection{Besoins fonctionnels}
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+  \setlength{\itemsep}{0.4em}
+
+\item \textbf{Ingestion en streaming~:} Le système doit simuler un flux continu d'événements transactionnels (commandes, articles, paiements, avis) à partir de données historiques, en respectant l'ordre chronologique des transactions et en maintenant un état de reprise en cas d'interruption.
+
+\item \textbf{Consommation multi-destinations~:} Les messages produits doivent être consommés simultanément par deux consumers indépendants~: l'un persistant les données dans PostgreSQL (OLTP) avec gestion des contraintes de clé étrangère, l'autre dans ClickHouse (OLAP) avec insertion par lots pour la performance.
+
+\item \textbf{Transformation par couches~:} Le pipeline doit transformer les données brutes de la couche Bronze vers la couche Silver (enrichissement géographique, nettoyage, traduction des catégories) puis vers la couche Gold (construction de la table de faits et des dimensions en schéma en étoile).
+
+\item \textbf{Orchestration automatisée~:} Les transformations Bronze$\rightarrow$Silver$\rightarrow$Gold doivent être orchestrées et schedulées automatiquement via Apache Airflow, avec gestion des dépendances entre tâches et mécanisme de retry.
+
+\item \textbf{Analyse prédictive~:} La plateforme doit embarquer un module de Machine Learning comprenant~: la prévision temporelle des ventes (forecasting), la segmentation des clients (clustering RFM), et la détection des transactions anormales (anomaly detection). Les résultats doivent être réintégrés dans ClickHouse.
+
+\item \textbf{Visualisation interactive~:} Un outil de BI doit permettre aux utilisateurs métier d'explorer les données Gold via des dashboards interactifs sans écrire de SQL.
+
+\item \textbf{Chargement initial des dimensions statiques~:} Le système doit pré-charger les tables de référence (clients, produits, vendeurs, géolocalisation) dans les deux bases au démarrage, avant que le streaming commence.
+
+\end{itemize}
+
+\subsection{Besoins non fonctionnels}
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+  \setlength{\itemsep}{0.4em}
+
+\item \textbf{Performance~:} Le consumer ClickHouse doit insérer les données par lots de 500 lignes et flusher toutes les 10 secondes pour équilibrer latence et débit. Les requêtes analytiques sur la table de faits (100\,000+ lignes) doivent s'exécuter en moins de 500\,ms grâce à l'engine colonnaire de ClickHouse.
+
+\item \textbf{Fiabilité et at-least-once delivery~:} Les consumers ne commitent les offsets Kafka qu'après une insertion réussie, garantissant qu'aucun message ne soit perdu en cas d'erreur. Le consumer PostgreSQL embarque un mécanisme de dead-letter queue pour les enregistrements qui échouent après 10 tentatives.
+
+\item \textbf{Résilience~:} Tous les services implémentent des boucles de retry avec backoff exponentiel pour la connexion aux brokers et bases de données. Les healthchecks Docker Compose garantissent le démarrage ordonné des services.
+
+\item \textbf{Reproductibilité~:} L'intégralité de l'environnement doit être déployable en une seule commande \texttt{docker compose up}. Aucune configuration manuelle post-démarrage ne doit être nécessaire.
+
+\item \textbf{Observabilité~:} Les consumers doivent journaliser chaque batch inséré avec le nombre de lignes et la table cible. Le producer doit journaliser chaque chunk streamé avec son horodatage.
+
+\item \textbf{Maintenabilité~:} Les transformations SQL (Bronze$\rightarrow$Silver, Silver$\rightarrow$Gold) doivent être externalisées dans des fichiers \texttt{.sql} indépendants, versionnables et modifiables sans redéploiement de l'image Airflow.
+
+\end{itemize}
+
+\section{Spécification détaillée}
+
+\subsection{Cas d'utilisation principaux}
+
+Le système distingue deux types d'acteurs~: le \textbf{Data Engineer} qui configure et exploite le pipeline, et l'\textbf{Analyste Métier} qui consomme les résultats.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{1cm} p{3.5cm} p{4cm} p{5cm}}
+\toprule
+\textbf{UC} & \textbf{Acteur} & \textbf{Cas d'utilisation} & \textbf{Description} \\
+\midrule
+UC1 & Data Engineer & Démarrer le pipeline & Lancer tous les services via Docker Compose \\
+UC2 & Data Engineer & Monitorer le streaming & Vérifier les offsets et le débit via Redpanda Console \\
+UC3 & Data Engineer & Déclencher les transformations & Activer le DAG Airflow pour Bronze→Silver→Gold \\
+UC4 & Data Engineer & Exécuter les modèles ML & Lancer les scripts de training et d'inférence \\
+UC5 & Analyste Métier & Consulter les dashboards & Explorer les KPIs de vente sur Metabase \\
+UC6 & Analyste Métier & Analyser les segments clients & Visualiser les clusters RFM dans Metabase \\
+UC7 & Analyste Métier & Suivre les prévisions & Consulter les forecasts de ventes \\
+\bottomrule
+\end{tabular}
+\caption{Cas d'utilisation du système}
+\end{table}
+
+\subsection{Flux de données de bout en bout}
+
+Le flux de traitement suit un chemin déterministe à cinq étapes~:
+
+\begin{enumerate}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Simulation~:} Le seeder charge les données statiques (clients, produits, vendeurs, géolocalisation, traductions) dans PostgreSQL et ClickHouse au démarrage.
+  \item \textbf{Production~:} Le producer lit les fichiers CSV Olist, trie les commandes chronologiquement, et publie des chunks de 100 commandes (avec leurs articles, paiements et avis associés) dans quatre topics Redpanda toutes les 60 secondes.
+  \item \textbf{Consommation~:} Deux consumers lisent simultanément les quatre topics. Le consumer PostgreSQL insère dans l'OLTP en respectant l'ordre FK (ordres avant articles). Le consumer ClickHouse accumule les messages dans des buffers par topic et flush par batch.
+  \item \textbf{Transformation~:} Le DAG Airflow exécute toutes les minutes les scripts SQL de transformation Bronze$\rightarrow$Silver puis Silver$\rightarrow$Gold.
+  \item \textbf{Analyse~:} Les modèles ML consomment les données Gold depuis ClickHouse, produisent des prédictions, et les réinsèrent dans des tables dédiées (\texttt{ml\_sales\_forecast}, \texttt{ml\_customer\_segments}, \texttt{ml\_order\_anomalies}).
+\end{enumerate}

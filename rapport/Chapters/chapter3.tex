@@ -1,0 +1,206 @@
+\chapter{Conception}
+
+\section{Architecture générale du système}
+
+\subsection{Vue d'ensemble}
+
+L'architecture du système est organisée autour de cinq couches fonctionnelles qui collaborent pour former un pipeline de données de bout en bout.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{logos/background.png}
+\end{figure}
+
+\begin{enumerate}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Couche Source (OLTP)~:} PostgreSQL 15 stocke les données transactionnelles avec leurs contraintes d'intégrité référentielle. C'est le système de record pour les opérations métier.
+  \item \textbf{Couche Streaming~:} Redpanda (compatible Kafka) assure le transport asynchrone des événements entre le producer et les consumers via quatre topics dédiés.
+  \item \textbf{Couche Ingestion (Bronze)~:} ClickHouse reçoit les données brutes via son consumer dédié et les stocke dans des tables MergeTree sans transformation.
+  \item \textbf{Couche Transformation (Silver/Gold)~:} Apache Airflow orchestre les scripts SQL de transformation qui enrichissent, nettoient et modélisent les données.
+  \item \textbf{Couche Consommation~:} Metabase interroge la couche Gold pour les dashboards ; les scripts ML consomment les données Gold pour produire des insights réintégrés dans ClickHouse.
+\end{enumerate}
+
+\subsection{Topologie des services Docker}
+
+Le système est composé de 14 services Docker orchestrés par Docker Compose, organisés selon les groupes suivants~:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3.5cm} p{4cm} p{6cm}}
+\toprule
+\textbf{Groupe} & \textbf{Services} & \textbf{Rôle} \\
+\midrule
+OLTP & \texttt{postgres}, \texttt{pgadmin} & Base transactionnelle + interface d'administration \\
+OLAP & \texttt{clickhouse} & Moteur analytique colonnaire \\
+Streaming & \texttt{redpanda}, \texttt{redpanda-init}, \texttt{redpanda-console}, \texttt{ksqldb-server}, \texttt{ksqldb-cli}, \texttt{kcat} & Broker Kafka + création des topics + outils de debug \\
+Pipeline & \texttt{postgres-seeder}, \texttt{producer} & Chargement initial + simulation du streaming \\
+Consumers & \texttt{consumer-postgres}, \texttt{consumer-clickhouse} & Consommateurs Kafka dual-sink \\
+Orchestration & \texttt{airflow-postgres}, \texttt{airflow-init}, \texttt{airflow-webserver}, \texttt{airflow-scheduler} & Méta-base, initialisation et exécution des DAGs \\
+BI & \texttt{postgres-metabase}, \texttt{metabase} & Méta-base Metabase + interface BI \\
+\bottomrule
+\end{tabular}
+\caption{Organisation des services Docker Compose}
+\end{table}
+
+\section{Modèle de données}
+
+\subsection{Schéma OLTP (PostgreSQL)}
+
+Le schéma PostgreSQL modélise fidèlement le domaine e-commerce avec des contraintes d'intégrité strictes. Il comprend huit tables avec les relations de clé étrangère suivantes~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \texttt{orders} référence \texttt{customers} (\texttt{customer\_id})
+  \item \texttt{order\_items} référence \texttt{orders} (\texttt{order\_id}), \texttt{products} (\texttt{product\_id}), \texttt{sellers} (\texttt{seller\_id})
+  \item \texttt{order\_payments} référence \texttt{orders} (\texttt{order\_id})
+  \item \texttt{order\_reviews} référence \texttt{orders} (\texttt{order\_id})
+  \item \texttt{customers} et \texttt{sellers} référencent \texttt{geolocation} via \texttt{zip\_code\_prefix}
+\end{itemize}
+
+Cette structure impose un ordre d'insertion strict dans le consumer PostgreSQL~: les commandes (\texttt{orders}) doivent être insérées avant leurs lignes d'articles, paiements et avis associés.
+
+\subsection{Architecture en médaillon (ClickHouse)}
+
+\subsubsection{Couche Bronze}
+
+La couche Bronze ingère les données brutes issues des quatre topics Kafka. Chaque table utilise l'engine \textbf{MergeTree} avec une clé de tri adaptée~:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{5cm} p{4cm} p{4.5cm}}
+\toprule
+\textbf{Table} & \textbf{Engine} & \textbf{Clé ORDER BY} \\
+\midrule
+\texttt{bronze\_orders} & MergeTree & \texttt{order\_purchase\_timestamp} \\
+\texttt{bronze\_order\_items} & MergeTree & \texttt{(order\_id, order\_item\_id)} \\
+\texttt{bronze\_order\_payments} & MergeTree & \texttt{(order\_id, payment\_sequential)} \\
+\texttt{bronze\_order\_reviews} & MergeTree & \texttt{(review\_id, order\_id)} \\
+\texttt{bronze\_customers} & MergeTree & \texttt{customer\_id} \\
+\texttt{bronze\_sellers} & MergeTree & \texttt{seller\_id} \\
+\texttt{bronze\_products} & MergeTree & \texttt{product\_id} \\
+\texttt{bronze\_geolocation} & MergeTree & \texttt{geolocation\_zip\_code\_prefix} \\
+\bottomrule
+\end{tabular}
+\caption{Tables de la couche Bronze dans ClickHouse}
+\end{table}
+
+\subsubsection{Couche Silver}
+
+La transformation Bronze$\rightarrow$Silver applique les enrichissements suivants~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Enrichissement géographique~:} Les tables \texttt{silver\_customers} et \texttt{silver\_sellers} sont enrichies avec les coordonnées GPS (\texttt{lat}, \texttt{lng}) via une jointure sur le code postal avec \texttt{bronze\_geolocation}.
+  \item \textbf{Traduction des catégories~:} La table \texttt{silver\_products} remplace les noms de catégories en portugais par leur équivalent anglais via \texttt{bronze\_category\_translation}.
+  \item \textbf{Nettoyage des avis~:} La table \texttt{silver\_order\_reviews} supprime les colonnes de texte libre (\texttt{review\_comment\_title}, \texttt{review\_comment\_message}) pour alléger la couche analytique.
+  \item \textbf{Pass-through transactionnel~:} Les tables \texttt{silver\_orders}, \texttt{silver\_order\_items} et \texttt{silver\_order\_payments} sont copiées sans modification.
+\end{itemize}
+
+\subsubsection{Couche Gold — Schéma en étoile}
+
+La couche Gold implémente un schéma en étoile classique centré sur la table de faits \texttt{fact\_order\_items}~:
+
+\textbf{Table de faits~:} \texttt{fact\_order\_items} contient une ligne par article commandé et embarque les mesures analytiques principales~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.3em}
+  \item \texttt{price}, \texttt{freight\_value} — métriques financières de la ligne
+  \item \texttt{payment\_value\_total}, \texttt{payment\_installments\_max}, \texttt{payment\_type\_main} — métriques de paiement agrégées par commande
+  \item \texttt{review\_score} — note client moyenne
+  \item Cinq clés de date (\texttt{purchase\_date\_key}, \texttt{approved\_date\_key}, etc.) au format \texttt{YYYYMMDD} pour la jointure avec \texttt{dim\_date}
+\end{itemize}
+
+\textbf{Dimensions~:} Plutôt que des tables de dimensions classiques nécessitant des JOINs, la couche Gold utilise des \textbf{Dictionnaires ClickHouse} qui offrent des lookups en O(1) en mémoire~:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{4cm} p{4cm} p{5.5cm}}
+\toprule
+\textbf{Dictionnaire} & \textbf{Source} & \textbf{Attributs exposés} \\
+\midrule
+\texttt{dict\_customers} & \texttt{silver\_customers} & \texttt{customer\_unique\_id}, \texttt{customer\_city}, \texttt{customer\_state} \\
+\texttt{dict\_sellers} & \texttt{silver\_sellers} & \texttt{seller\_city}, \texttt{seller\_state} \\
+\texttt{dict\_products} & \texttt{silver\_products} & \texttt{product\_category\_name\_english} \\
+\texttt{dict\_date} & \texttt{dim\_date} & Tous les attributs temporels \\
+\bottomrule
+\end{tabular}
+\caption{Dictionnaires ClickHouse de la couche Gold}
+\end{table}
+
+La dimension \texttt{dim\_date} est pré-remplie avec 3650 jours (10 ans) depuis le 1\textsuperscript{er} janvier 2016, couvrant l'intégralité de la période du dataset Olist.
+
+\section{Conception du module Machine Learning}
+
+\subsection{Architecture modulaire}
+
+Le module ML est structuré en couches séparées pour maximiser la réutilisabilité~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \texttt{src/data\_loader.py} — Chargement des CSV avec typage des dates
+  \item \texttt{src/feature\_engineering.py} — Construction des features (sales mensuels, RFM, features journalières)
+  \item \texttt{src/preprocessing.py} — Normalisation, StandardScaler
+  \item \texttt{src/[module]/models.py} — Définition des modèles par cas d'usage
+  \item \texttt{src/[module]/train.py} — Entraînement et sélection du meilleur modèle
+  \item \texttt{src/[module]/predict.py} — Inférence sur de nouvelles données
+  \item \texttt{src/model\_registry.py} — Sauvegarde et chargement des modèles (joblib)
+  \item \texttt{integration/insert\_*.py} — Réinjection des résultats dans ClickHouse
+\end{itemize}
+
+\subsection{Module de prévision des ventes (Forecasting)}
+
+\textbf{Problématique~:} Prédire le revenu mensuel total pour les prochains mois afin d'anticiper les besoins logistiques et commerciaux.
+
+\textbf{Features construites~:} Le module agrège les paiements des commandes livrées par mois calendaire et construit trois features de lag temporel (\texttt{lag\_1}, \texttt{lag\_2}, \texttt{lag\_3}) plus l'indice du mois dans l'année.
+
+\textbf{Modèles comparés~:}
+\begin{itemize}
+  \setlength{\itemsep}{0.3em}
+  \item \textbf{Linear Regression} — baseline interprétable
+  \item \textbf{Random Forest} (300 estimateurs, profondeur max 8) — capture les non-linéarités
+  \item \textbf{Gradient Boosting} (300 estimateurs, learning rate 0.03) — modèle boosting pour les tendances
+\end{itemize}
+
+\subsection{Module de segmentation client (Clustering)}
+
+\textbf{Problématique~:} Identifier des segments de clients homogènes pour des actions marketing ciblées.
+
+\textbf{Features RFM construites~:}
+\begin{itemize}
+  \setlength{\itemsep}{0.3em}
+  \item \textbf{Recency~:} Nombre de jours depuis la dernière commande par rapport à la date de snapshot
+  \item \textbf{Frequency~:} Nombre de commandes distinctes par client unique
+  \item \textbf{Monetary~:} Montant total dépensé
+  \item \textbf{Average Order Value~:} Monetary / Frequency
+\end{itemize}
+
+\textbf{Modèles comparés~:} K-Means avec $k \in \{3, 4, 5, 6\}$, sélection du meilleur $k$ par score de silhouette.
+
+\subsection{Module de détection d'anomalies}
+
+\textbf{Problématique~:} Identifier les transactions inhabituelles qui pourraient signaler une fraude, une erreur de saisie ou un comportement exceptionnel.
+
+\textbf{Modèles comparés~:}
+\begin{itemize}
+  \setlength{\itemsep}{0.3em}
+  \item \textbf{Z-Score} — baseline statistique, signale les valeurs à plus de 3 écarts-types de la moyenne
+  \item \textbf{Isolation Forest} (200 estimateurs, contamination 2\%) — détection non supervisée par isolation des points rares
+\end{itemize}
+
+\section{Conception du DAG Airflow}
+
+Le DAG \texttt{warehouse\_pipeline} définit un graphe de dépendances minimal mais fonctionnel~:
+
+\begin{verbatim}
+bronze_to_silver >> silver_to_gold
+\end{verbatim}
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Schedule~:} Toutes les minutes (\texttt{*/1 * * * *}) pour un rafraîchissement quasi-temps réel
+  \item \textbf{max\_active\_runs = 1~:} Évite les exécutions concurrentes qui pourraient provoquer des TRUNCATE/INSERT simultanés
+  \item \textbf{catchup = False~:} Pas de rattrapage des exécutions manquées au démarrage
+  \item \textbf{Retry~:} 1 tentative avec 2 minutes de délai en cas d'erreur ClickHouse
+\end{itemize}
+
+Chaque tâche Python lit le fichier SQL correspondant, le découpe en statements individuels et les exécute séquentiellement via le client \texttt{clickhouse\_connect}.

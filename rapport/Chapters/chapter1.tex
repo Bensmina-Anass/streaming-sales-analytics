@@ -1,0 +1,70 @@
+\chapter{Cadrage du projet}
+
+\section{Contexte et problématique}
+
+Les entreprises du commerce électronique font face à un défi fondamental : leurs systèmes transactionnels (OLTP) sont optimisés pour l'écriture rapide, mais inadaptés à l'analyse. Exécuter des requêtes analytiques complexes directement sur une base PostgreSQL de production dégrade les performances opérationnelles et retarde la prise de décision.
+
+Par ailleurs, les événements de vente se produisent en continu. Une architecture batch traditionnelle, qui traiterait les données une fois par nuit, introduit une latence inacceptable pour des cas d'usage comme la détection de fraude en temps réel, le suivi des niveaux de stock ou l'analyse des tendances d'achat horaires.
+
+La problématique centrale de ce projet est donc la suivante~: \textbf{comment concevoir une infrastructure de données capable d'ingérer des flux transactionnels en temps quasi-réel, de les transformer de manière incrémentale, et de les exposer à des outils d'analyse et de Machine Learning, tout en maintenant la disponibilité du système opérationnel ?}
+
+\section{Source de données}
+
+Le projet s'appuie sur le jeu de données \textbf{Olist}, un dataset public issu d'une marketplace brésilienne de e-commerce, disponible sur Kaggle. Il couvre la période 2016--2018 et contient~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{100\,000+ commandes} avec leurs statuts, horodatages et identifiants clients
+  \item \textbf{Lignes d'articles} avec produit, vendeur, prix et frais de livraison
+  \item \textbf{Paiements} avec type, montant et nombre d'échéances
+  \item \textbf{Avis clients} avec score (1--5) et commentaires textuels
+  \item \textbf{Données géographiques} avec codes postaux, villes, États et coordonnées GPS
+  \item \textbf{Catalogue produits} avec catégories en portugais et traduction anglaise
+\end{itemize}
+
+Ce dataset présente l'avantage d'être suffisamment riche pour illustrer des cas d'usage analytiques réels (segmentation géographique, prévision de ventes, détection d'anomalies) tout en étant maîtrisable dans un environnement de développement local.
+
+\section{Choix du modèle de développement}
+
+\subsection{Architecture orientée streaming}
+
+Le choix d'une architecture orientée streaming, plutôt que d'un ETL batch classique, répond à plusieurs impératifs~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Latence réduite~:} Les données sont disponibles dans le Data Warehouse quelques secondes après leur génération, contre plusieurs heures avec un batch nocturne.
+  \item \textbf{Scalabilité horizontale~:} Un broker Kafka peut absorber des millions d'événements par seconde en ajoutant des partitions et des consumers.
+  \item \textbf{Découplage des systèmes~:} Le producer (source opérationnelle) et les consumers (destinations analytiques) évoluent indépendamment sans interdépendance directe.
+  \item \textbf{Rejoue des événements~:} En cas d'erreur dans un consumer, il est possible de rejouer les messages depuis n'importe quel offset.
+\end{itemize}
+
+\subsection{Architecture en médaillon (Medallion Architecture)}
+
+L'organisation des données en trois couches distinctes — Bronze, Silver, Gold — est un pattern reconnu dans l'industrie (popularisé par Databricks/Delta Lake) qui apporte~:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.4em}
+  \item \textbf{Bronze~:} Données brutes ingérées telles quelles, sans transformation. Sert de source de vérité immuable et permet la rejouabilité.
+  \item \textbf{Silver~:} Données nettoyées, enrichies (ex~: géolocalisation), dédupliquées et typées correctement. Prêtes pour l'analyse exploratoire.
+  \item \textbf{Gold~:} Données modélisées en schéma en étoile, agrégées et optimisées pour la performance des requêtes analytiques et des dashboards.
+\end{itemize}
+
+\subsection{Justification des choix technologiques}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{>{\bfseries}p{3.5cm} p{4cm} p{6cm}}
+\toprule
+Composant & Technologie choisie & Justification \\
+\midrule
+Message Broker & Redpanda & Compatible Kafka, plus léger, pas de JVM, idéal pour le dev local \\
+Base OLTP & PostgreSQL 15 & Standard de l'industrie, excellente gestion des FK et contraintes \\
+Base OLAP & ClickHouse & Moteur colonnaire haute performance, dictionnaires pour lookups O(1) \\
+Orchestration & Apache Airflow & Standard de facto pour les pipelines data, DAGs en Python \\
+Visualisation & Metabase & Interface no-code pour les utilisateurs métier, dashboards interactifs \\
+ML & scikit-learn & Bibliothèque mature, modèles classiques bien adaptés au use case \\
+Conteneurisation & Docker Compose & Reproductibilité totale de l'environnement en une commande \\
+\bottomrule
+\end{tabular}
+\caption{Choix technologiques du projet}
+\end{table}

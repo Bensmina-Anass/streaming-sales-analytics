@@ -1,0 +1,72 @@
+\documentclass{rapportENSIAS}
+\usepackage{lipsum}
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{float}
+
+\title{Rapport ENSIAS - Sales Data Warehouse}
+
+\begin{document}
+
+%----------- Informations du rapport ---------
+
+\titre{Plateforme de Data Warehouse Streaming pour l'Analyse des Ventes~: Conception et Réalisation}
+\sujet{Projet Data Engineering}
+
+\enseignant{ENSIAS\\}
+
+\eleves{Anass \textsc{Bensmina} \\}
+
+\jury{}
+
+%----------- Initialisation -------------------
+
+\fairemarges
+\fairepagedegarde
+
+\newpage
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{Introduction générale}
+\vspace{3cm}
+
+Dans un contexte économique où le volume des transactions numériques croît de façon exponentielle, la capacité à collecter, transformer et analyser des données en temps réel est devenue un avantage concurrentiel déterminant. Les entreprises e-commerce génèrent chaque seconde des flux de données relatifs aux commandes, aux paiements et aux comportements clients, données dont la valeur analytique est immense mais souvent sous-exploitée faute d'une infrastructure adaptée.
+
+Ce projet a pour ambition de concevoir et de réaliser une plateforme complète de Data Warehouse orientée streaming, capable d'ingérer des données transactionnelles en temps quasi-réel, de les transformer selon une architecture en médaillon (Bronze, Silver, Gold), puis de les exposer à des outils de visualisation et à des modèles de Machine Learning pour en extraire des insights à haute valeur ajoutée.
+
+La source de données choisie est le jeu de données public \textit{Olist} — une marketplace brésilienne de e-commerce — qui fournit un ensemble réaliste de commandes, articles, paiements, avis et informations géographiques portant sur plus de 100\,000 transactions.
+
+Ce rapport s'articule autour de quatre chapitres principaux. Le premier chapitre présente le cadrage du projet, la problématique et les choix technologiques. Le deuxième chapitre détaille la spécification des besoins fonctionnels et non fonctionnels. Le troisième chapitre expose la conception architecturale et les modèles de données. Enfin, le quatrième chapitre est consacré à la réalisation technique, au pipeline de données et aux modules d'analyse avancée.
+
+\newpage
+\tabledematieres
+
+%------------ Corps du rapport ----------------
+\include{Chapters/chapter1}
+\include{Chapters/chapter2}
+\include{Chapters/chapter3}
+\include{Chapters/chapter4}
+
+\newpage
+\chapter*{Conclusion Générale}
+\addcontentsline{toc}{chapter}{Conclusion Générale}
+\vspace{3cm}
+
+Ce projet a permis de concevoir et de réaliser une plateforme de Data Warehouse streaming complète, allant de la simulation d'événements transactionnels jusqu'à la visualisation interactive et l'analyse prédictive par Machine Learning.
+
+Sur le plan technique, le projet valide plusieurs choix architecturaux structurants. L'utilisation de Redpanda comme broker Kafka-compatible offre une alternative légère et performante pour le développement local tout en restant compatible avec les déploiements Kafka en production. L'architecture en médaillon implémentée dans ClickHouse garantit une séparation claire des responsabilités entre ingestion brute, nettoyage et modélisation analytique. La couche Gold en schéma en étoile, avec ses dictionnaires haute performance, démontre une maîtrise des patterns d'optimisation propres aux moteurs OLAP.
+
+Le module Machine Learning constitue la valeur ajoutée différenciatrice du projet : la prévision des ventes par Gradient Boosting, la segmentation client RFM par K-Means et la détection d'anomalies par Isolation Forest forment un écosystème analytique cohérent dont les résultats sont réintégrés dans ClickHouse pour être exploités directement dans les dashboards Metabase.
+
+Plusieurs axes d'amélioration ont été identifiés : l'intégration de dbt pour la gestion versionnée des transformations SQL, l'ajout d'une couche de qualité des données entre Bronze et Silver, le câblage du module ML dans les DAGs Airflow pour un réentraînement automatique, et le déploiement d'une solution d'observabilité Prometheus/Grafana pour le monitoring en production.
+
+Ce projet constitue une démonstration concrète d'une architecture data moderne, résiliente et évolutive, posant des bases solides pour un déploiement en environnement de production.
+
+\end{document}
