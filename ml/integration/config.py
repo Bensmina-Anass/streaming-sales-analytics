@@ -3,8 +3,9 @@ from clickhouse_connect import get_client
 
 def get_clickhouse_client():
     return get_client(
-        host="localhost",
+        host="clickhouse",
         port=8123,
-        username="default",
-        password="",
+        username="admin",
+        password="admin",
+        database="ecommerce_dw",
     )

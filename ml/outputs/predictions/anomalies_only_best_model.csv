@@ -1,0 +1,14 @@
+date,revenue,is_anomaly,model_name
+2016-12-23,19.62,1,isolation_forest
+2017-11-24,175250.94,1,isolation_forest
+2017-11-25,70684.27,1,isolation_forest
+2017-11-27,55887.37,1,isolation_forest
+2017-11-28,55990.31,1,isolation_forest
+2018-04-09,55344.94,1,isolation_forest
+2018-05-07,60805.33,1,isolation_forest
+2018-05-10,56936.59,1,isolation_forest
+2018-05-14,60753.88,1,isolation_forest
+2018-05-16,63960.93,1,isolation_forest
+2018-06-11,57345.56,1,isolation_forest
+2018-08-06,62728.23,1,isolation_forest
+2018-08-07,55643.03,1,isolation_forest

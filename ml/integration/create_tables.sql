@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS sales_forecast (
+CREATE DATABASE IF NOT EXISTS ecommerce_dw;
+
+CREATE TABLE IF NOT EXISTS ecommerce_dw.sales_forecast (
     forecast_month Date,
     forecast_month_date Date,
     predicted_revenue Float64,
@@ -8,9 +10,7 @@ CREATE TABLE IF NOT EXISTS sales_forecast (
 ENGINE = MergeTree()
 ORDER BY forecast_month;
 
---------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS customer_segments (
+CREATE TABLE IF NOT EXISTS ecommerce_dw.customer_segments (
     customer_unique_id String,
     recency Int32,
     frequency Int32,
@@ -23,9 +23,7 @@ CREATE TABLE IF NOT EXISTS customer_segments (
 ENGINE = MergeTree()
 ORDER BY customer_unique_id;
 
---------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS sales_anomalies (
+CREATE TABLE IF NOT EXISTS ecommerce_dw.sales_anomalies (
     date Date,
     revenue Float64,
     is_anomaly UInt8,
