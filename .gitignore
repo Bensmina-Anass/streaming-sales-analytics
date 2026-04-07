@@ -4,8 +4,7 @@
 # Airflow logs
 airflow/logs/
 
-# Metabase data
-metabase-data/
+# Metabase data, ill leave it so we all see my dashboard changes
 
 # Python
 **/__pycache__/
@@ -28,3 +27,7 @@ descriptif_projet.pdf
 
 # Claude analysis hhh
 ./DW_PROJECT_ANALYSIS.md
+
+
+metabase-data/
+/metabase-data/
