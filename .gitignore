@@ -31,3 +31,6 @@ descriptif_projet.pdf
 
 metabase-data/
 /metabase-data/
+
+# Claude Code
+.claude/
