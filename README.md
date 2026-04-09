@@ -183,6 +183,9 @@ watch -n 5 "docker exec olap_clickhouse clickhouse-client \
 
 ---
 
-## Author
+## Project Contributors
 
-**Bensmina Anass** — [GitHub](https://github.com/Bensmina-Anass/streaming-sales-analytics)
+**Bensmina Anass**
+**Bellil Zakariae**
+**Benaqqa Moubarak**
+**El Akkioui Aymane**
